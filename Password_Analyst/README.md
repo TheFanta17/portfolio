@@ -37,10 +37,15 @@ Ce classement s’appuie sur les recommandations et bonnes pratiques issues de :
 ---
 
 ## Utilisation
-Placer le fichier `rockyou.txt` dans le même dossier que le script, puis lancer :
+La wordlist `rockyou.txt` n’est **pas incluse** dans le repository.
+
+Elle peut être téléchargée ici :
+https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+
+Placer ensuite le fichier `rockyou.txt` dans le même dossier que le script.
 
 ```bash
-python password_analyst.py
+python analyst.py
 ```
 
 Entrer un mot de passe dans le champ prévu pour voir l’analyse évoluer en temps réel.
