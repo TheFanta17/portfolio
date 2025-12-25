@@ -1,6 +1,6 @@
 # 🛡️ Password Dictionary Attacks (Mini-Lab)
 
-![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
+![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
 ![Security](https://img.shields.io/badge/Focus-Cybersecurity-red?style=for-the-badge)
 
 Ce mini-lab illustre la fragilité des archives protégées par des mots de passe faibles face à une **attaque par dictionnaire**. L'objectif est purement éducatif : sensibiliser à l'importance de la complexité des mots de passe.
