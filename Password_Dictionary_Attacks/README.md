@@ -1,4 +1,4 @@
-# 🛡️ Password Dictionary Attacks (Mini-Lab)
+# 🛡️ Password Dictionary Attacks
 
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
 ![Security](https://img.shields.io/badge/Focus-Cybersecurity-red?style=for-the-badge)
