@@ -1,8 +1,8 @@
-\# Password Dictionary Attacks
+# Password Dictionary Attacks
 
 
 
-\## Objectif
+## Objectif
 
 
 
@@ -12,13 +12,13 @@
 
 Le projet consiste à :
 
-\- créer un fichier texte,
+- créer un fichier texte,
 
-\- le compresser en `.zip` avec un mot de passe (ex : via 7-Zip),
+- le compresser en `.zip` avec un mot de passe (ex : via 7-Zip),
 
-\- exécuter un script Python qui teste une wordlist (dictionnaire) jusqu’à trouver le mot de passe,
+- exécuter un script Python qui teste une wordlist (dictionnaire) jusqu’à trouver le mot de passe,
 
-\- afficher le mot de passe lorsqu’il est trouvé.
+- afficher le mot de passe lorsqu’il est trouvé.
 
 
 
@@ -30,7 +30,7 @@ Le projet consiste à :
 
 
 
-\## Fonctionnalités
+## Fonctionnalités
 
 
 
@@ -50,13 +50,13 @@ Le projet consiste à :
 
 
 
-\## Prérequis
+## Prérequis
 
 
 
-\- Python 3.x
+- Python 3.x
 
-\- (Optionnel) 7-Zip pour générer une archive `.zip` protégée
+- (Optionnel) 7-Zip pour générer une archive `.zip` protégée
 
 
 
@@ -64,19 +64,19 @@ Le projet consiste à :
 
 
 
-\## Utilisation
+## Utilisation
 
 
 
-\### 1) Préparer une archive ZIP protégée
+### 1) Préparer une archive ZIP protégée
 
-\- Crée un fichier (ex: `dummy.txt`)
+- Crée un fichier (ex: `dummy.txt`)
 
-\- Zippe-le avec un mot de passe (ex: `test.zip`)
+- Zippe-le avec un mot de passe (ex: `test.zip`)
 
 
 
-\### 2) Préparer une wordlist
+### 2) Préparer une wordlist
 
 Place une wordlist (ex: `rockyou.txt`) \*\*en local\*\* (non incluse dans le repo).
 
@@ -86,7 +86,7 @@ Place une wordlist (ex: `rockyou.txt`) \*\*en local\*\* (non incluse dans le rep
 
 
 
-\### 3) Lancer le script
+### 3) Lancer le script
 
 
 
