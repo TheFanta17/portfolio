@@ -1,67 +1,69 @@
-# Password Lab
+# 🧪 Password Lab: Analyse de Fuites & Audit de Hashs
 
-## Objectif
-Password Lab est un mini laboratoire en Python qui simule une fuite de base d’authentification afin d’analyser la sécurité du stockage des mots de passe.
+![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
+![Security](https://img.shields.io/badge/Focus-Cryptography-orange?style=for-the-badge)
 
-Le projet met en évidence pourquoi certains algorithmes de hash sont inadaptés en cas de fuite de données, et comment évaluer concrètement leur impact.
-
----
-
-## Fonctionnalités
-- Génération de comptes avec mots de passe hashés (SHA-256 salé, bcrypt)
-- Simulation de fuite de base de données
-- Audit hors-ligne des hash :
-  - format et cohérence
-  - présence et validité du sel
-  - paramètres de sécurité (bcrypt cost)
-  - détection de mots de passe faibles (banned list)
-  - détection de réutilisation de mots de passe
-- Benchmark comparatif des algorithmes (temps par tentative)
+**Password Lab** est un environnement de simulation de fuite de base de données (Database Dump). Il permet d'étudier l'efficacité des différentes méthodes de stockage de mots de passe et de tester la robustesse des algorithmes face à des audits hors-ligne.
 
 ---
 
-## Structure du projet
-```
+## 🎯 Objectifs Pédagogiques
+L'enjeu est de démontrer que la sécurité des données ne repose pas uniquement sur l'utilisateur, mais sur le choix technique de l'administrateur :
+* **Comparaison d'algorithmes** : Différence entre hash rapide (SHA-256) et hash lent (bcrypt).
+* **Analyse de l'entropie** : Impact du sel (salt) et du coût de calcul (*work factor*).
+* **Audit de sécurité** : Détection automatique des vulnérabilités dans une base compromise.
+
+## 🛠️ Fonctionnalités
+* **Génération dynamique** : Création de comptes avec hashs personnalisables.
+* **Simulation de fuite** : Extraction des données (`dump`) pour analyse externe.
+* **Module d'Audit** :
+    * Vérification de la validité du sel.
+    * Détection de réutilisation de mots de passe.
+    * Comparaison avec une liste de mots de passe interdits (*banned list*).
+* **Benchmark** : Mesure du temps nécessaire pour une tentative de craquage selon l'algorithme.
+
+---
+
+## 📂 Structure du Projet
+```text
 Password_Lab/
-├── create_users.py
-├── dump_db.py
-├── audit_hashes.py
-├── benchmark.py
-├── list_mdp.txt
-├── data/
-│   ├── users.db
-│   └── candidates.txt
+├── create_users.py     # Génération de la base (SHA-256 / bcrypt)
+├── dump_db.py          # Simulation de l'exfiltration de données
+├── audit_hashes.py     # Analyse de vulnérabilité post-fuite
+├── benchmark.py        # Mesures de performance (temps/tentative)
+├── list_mdp.txt        # Dictionnaire source
+└── data/               # Stockage des bases et résultats
 ```
+## 💻 Utilisation
 
----
+### 1. Génération de la base de données
+Vous pouvez choisir l'algorithme et la difficulté de calcul pour simuler différents niveaux de sécurité :
 
-## Utilisation
-
-### Génération de la base
-```bash
+```powershell
+# Pour générer des hashs SHA-256 (rapides, moins sécurisés)
 python create_users.py --algo sha256 --passwords list_mdp.txt
+
+# Pour générer des hashs bcrypt (lents, hautement sécurisés)
 python create_users.py --algo bcrypt --bcrypt-cost 12 --passwords list_mdp.txt
 ```
 
-### Simulation de fuite
-```bash
+### 2. Simulation de fuite (Dump)
+Cette étape simule l'exfiltration de la table des utilisateurs vers un fichier plat, reproduisant le comportement d'un attaquant ayant obtenu un accès non autorisé à la base de données :
+
+```powershell
 python dump_db.py
 ```
 
-### Audit de sécurité
-```bash
-python audit_hashes.py
-```
+### 3. Audit de sécurité et Benchmark
+Analysez la qualité du stockage et comparez le temps nécessaire pour tester les mots de passe :
 
-### Benchmark
-```bash
+```powershell
+# Lance l'analyse de cohérence et la détection de mots de passe faibles
+python audit_hashes.py
+
+# Compare la vitesse de calcul (hashs par seconde) entre les algos
 python benchmark.py
 ```
 
----
-
-## Conclusion
-En cas de fuite de base de données, la sécurité ne doit pas dépendre uniquement du choix des mots de passe par les utilisateurs.
-Même un mot de passe faible ne doit pas pouvoir être récupéré facilement si les mécanismes de protection sont correctement conçus.
-
-Le projet montre que l’utilisation d’algorithmes lents et adaptés au stockage des mots de passe permet de limiter fortement l’impact des attaques hors-ligne, là où des fonctions de hash rapides rendent la récupération des mots de passe réaliste.
+## 💡 Conclusion du Lab
+Le projet met en évidence qu'un algorithme de hash rapide rend la récupération des mots de passe triviale en cas de fuite. L'utilisation de fonctions de dérivation de clé lentes (**Key Stretching**) comme **bcrypt** est la seule défense réelle pour limiter l'impact d'une fuite de données massive, en rendant le coût de calcul prohibitif pour l'attaquant.
