@@ -1,51 +1,53 @@
-# 🔍 Password Analyst
+# Password Analyst
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
-![Interface](https://img.shields.io/badge/UI-Tkinter-lightgrey?style=for-the-badge)
-![Security](https://img.shields.io/badge/Compliance-NIST%20%2F%20OWASP-green?style=for-the-badge)
+## 🧩 Introduction
+Password Analyst est un outil pédagogique en Python permettant d’analyser **en temps réel** la robustesse d’un mot de passe, sans jamais tenter de le craquer.
 
-**Password Analyst** est un outil d'analyse de robustesse en temps réel. Contrairement aux outils de craquage, il se concentre sur la **prévention** et l'**éducation** en évaluant instantanément la qualité d'un mot de passe selon des standards de cybersécurité reconnus.
+L’objectif est de montrer comment identifier rapidement des mots de passe faibles à partir de critères concrets utilisés en cybersécurité moderne.
 
----
+## 🚀 Ce que permet le projet
+- Analyser un mot de passe caractère par caractère
+- Évaluer sa robustesse selon plusieurs critères réalistes :
+  - longueur
+  - présence dans une wordlist connue (`rockyou`)
+  - détection de patterns faibles (suites, répétitions, formats courants)
+  - diversité des types de caractères
+  - estimation simple de l’entropie
+- Classer le mot de passe sur 5 niveaux :
+  - Très faible
+  - Faible
+  - Moyen
+  - Fort
+  - Très fort
+- Appliquer des recommandations issues de standards reconnus :
+  - **NIST SP 800-63B**
+  - **OWASP Password Guidance**
 
-## 🎯 Objectif
-Démontrer visuellement comment les critères de sécurité modernes transforment un mot de passe vulnérable en une barrière robuste. L'outil identifie les faiblesses structurelles avant même que le mot de passe ne soit utilisé.
-
----
-
-## ✨ Fonctionnalités
-* **Analyse Dynamique** : Évaluation instantanée à chaque frappe au clavier.
-* **Critères Multidimensionnels** :
-    * 📏 **Longueur** : Priorité à la longueur (principe des phrases secrètes).
-    * 📖 **Filtrage par Dictionnaire** : Comparaison avec la célèbre liste `rockyou.txt`.
-    * 🧩 **Détection de Patterns** : Identification des suites logiques (123...), répétitions et formats prévisibles.
-    * 🎲 **Entropie** : Calcul de la variété des caractères et de la complexité mathématique.
-* **Système de Scoring** : Classement sur 5 niveaux (Très faible 🔴 → Très fort 🟢).
-
----
-
-## 📚 Références & Standards
-Le moteur d'analyse est aligné sur les recommandations internationales :
-> [!IMPORTANT]
-> **NIST SP 800-63B** : Focus sur la longueur et le rejet des mots de passe compromis plutôt que sur les changements arbitraires de caractères.
-> 
-> **OWASP ASVS** : Guide sur la limitation des patterns faibles et la résistance aux attaques par dictionnaire.
-
----
-
-## 💻 Utilisation
-
-### 1. Prérequis
-Le fichier `rockyou.txt` est indispensable pour la détection de mots de passe compromis mais n'est pas inclus (volume trop important).
-* **Téléchargement** : [rockyou.txt](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
-* **Installation** : Placez le fichier à la racine du projet.
-
-### 2. Lancement
-```powershell
-python analyst.py
+## 📁 Structure du projet
 ```
 
----
+Password_Analyst/
+├── analyst.py
+├── rockyou.txt      # Wordlist (non incluse)
+└── README.md
 
-## 🔑 Message Clé
-La sécurité moderne ne se résume pas à ajouter un caractère spécial. **La longueur, l'absence de motifs prévisibles et le filtrage des mots de passe courants** sont les piliers de la défense contre les attaques actuelles.
+````
+
+## ▶️ Utilisation
+1. Télécharger la wordlist `rockyou.txt` :  
+   https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+
+2. Placer le fichier `rockyou.txt` dans le dossier du projet
+
+3. Lancer l’outil :
+```bash
+python analyst.py
+````
+
+4. Entrer un mot de passe dans le champ prévu pour voir l’analyse évoluer en temps réel
+
+## ⚠️ Message de prévention
+
+Cet outil n’effectue **aucun craquage**, ne stocke aucun mot de passe et ne communique aucune donnée.
+
+Il est destiné **exclusivement à des fins pédagogiques et de sensibilisation à la sécurité des mots de passe**, dans un cadre légal et éthique.

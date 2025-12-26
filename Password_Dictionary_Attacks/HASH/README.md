@@ -1,105 +1,62 @@
-# 🔐 Password Hash Dictionary Attack (SHA-512)
+# Password Hash Dictionary Attack (SHA-512)
 
-![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
-![Security](https://img.shields.io/badge/Focus-Cybersecurity-red?style=for-the-badge)
-![Hashing](https://img.shields.io/badge/Hash-SHA--512%20crypt-purple?style=for-the-badge)
+## 🧩 Introduction
+Ce mini-lab en Python démontre comment un mot de passe hashé peut être compromis par une **attaque par dictionnaire**, même lorsque celui-ci est protégé par un algorithme robuste comme **SHA-512 crypt**.
 
-Ce mini-lab démontre la **résistance relative des mots de passe hashés** face à une **attaque par dictionnaire**, même lorsqu’un algorithme robuste comme **SHA-512 crypt** est utilisé.
+Le projet simule un scénario réaliste proche du fonctionnement de `/etc/shadow`, dans un objectif strictement pédagogique.
 
-L’objectif est **strictement éducatif** : comprendre le fonctionnement des hashes, du salage, et des attaques par wordlist dans un contexte réaliste proche de `/etc/shadow`.
-
----
-
-## 🎯 Objectif du Lab
-
-Le projet simule un scénario classique de cybersécurité :
-
-1. **Création du hash**
-   - Un mot de passe est saisi de manière sécurisée.
-   - Il est hashé avec **SHA-512 crypt** (sel + rounds).
-   - Le hash est stocké dans un fichier `shadow.txt`.
-
-2. **Attaque par dictionnaire**
-   - Chargement du hash depuis `shadow.txt`.
-   - Test séquentiel de mots de passe issus d’une wordlist (`rockyou.txt`).
-   - Vérification via recalcul du hash avec les paramètres d’origine.
-
-3. **Résultat**
-   - Affichage du mot de passe en clair si trouvé.
-   - Échec explicite si la wordlist ne contient pas le bon mot de passe.
-
----
-
-## 🚀 Fonctionnalités
-
-* **Hashing réaliste**
-  - Utilisation du format SHA-512 crypt (compatible `/etc/shadow`).
-  - Sel et paramètres générés automatiquement.
-
-* **Attaque par dictionnaire**
-  - Lecture optimisée ligne par ligne (faible consommation mémoire).
-  - Support des wordlists volumineuses.
-
-* **Vérification sécurisée**
-  - Recalcul du hash avec le sel et les rounds extraits.
-  - Comparaison fiable via `passlib`.
-
-* **Code pédagogique**
-  - Structure simple et lisible.
-  - Séparation claire entre hashing et cracking.
-
----
-
-## 🛠️ Prérequis
-
-* **Python 3.13**
-* Bibliothèque **Passlib**
-  ```bash
-  pip install passlib
-````
-
-* Une wordlist (ex : `rockyou.txt`)
-
----
+## 🚀 Ce que permet le projet
+- Générer un hash de mot de passe au format **SHA-512 crypt**
+- Utiliser un sel et des paramètres réalistes (rounds)
+- Stocker un hash dans un fichier simulant une base d’authentification
+- Lancer une attaque par dictionnaire à partir d’une wordlist
+- Comprendre le rôle du sel et des paramètres de hashing
+- Observer les limites des mots de passe faibles, même avec un bon algorithme
 
 ## 📁 Structure du projet
-
 ```
+
 HASH/
 ├── hashing.py           # Génération du hash SHA-512 crypt
 ├── shadow_cracker.py    # Attaque par dictionnaire
 ├── shadow.txt           # Hash cible (format crypt)
-├── rockyou.txt          # Wordlist (exclue du dépôt Git)
+├── rockyou.txt          # Wordlist (non incluse)
 └── README.md
-```
 
----
+````
 
-## 💻 Utilisation
+## ▶️ Utilisation
 
-### 1. Préparer l'environnement
-Placez votre archive cible et votre dictionnaire dans le dossier du projet. 
+### 1. Préparer l’environnement
+Installer la dépendance nécessaire :
+```bash
+pip install passlib
+````
 
-> [!IMPORTANT]
-> Le fichier `rockyou.txt` est exclu du dépôt via le `.gitignore` pour éviter de surcharger le dossier Git.
+Placer une wordlist (ex : `rockyou.txt`) dans le dossier du projet.
+
+> Le fichier `rockyou.txt` est volontairement exclu du dépôt Git via le `.gitignore`.
 
 ### 2. Générer un hash
 
-Lancez le script de hashing :
-
-```powershell
+```bash
 python hashing.py
 ```
 
-* Le mot de passe est saisi **sans affichage**.
-* Le hash est enregistré dans `shadow.txt`.
+* Le mot de passe est saisi sans affichage
+* Le hash est enregistré dans le fichier `shadow.txt`
 
 ### 3. Lancer l’attaque par dictionnaire
 
-```powershell
+```bash
 python shadow_cracker.py
 ```
 
-* Le script charge automatiquement `shadow.txt`.
-* Chaque mot de la wordlist est testé.
-* En cas de succès, le mot de passe est affiché immédiatement.
+* Chaque mot de la wordlist est testé séquentiellement
+* Le mot de passe est affiché immédiatement s’il est trouvé
+
+## ⚠️ Message de prévention
+
+Ce projet est conçu **uniquement à des fins éducatives** afin de comprendre le fonctionnement du stockage des mots de passe et des attaques hors-ligne.
+
+Toute utilisation de ces techniques sur des systèmes ou données sans autorisation est **illégale** et contraire à l’éthique.
