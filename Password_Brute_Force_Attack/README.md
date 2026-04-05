@@ -1,8 +1,8 @@
-\# Password Brute Force Attack
+# Password Brute Force Attack
 
 
 
-\## 🧩 Introduction
+## 🧩 Introduction
 
 Ce mini-lab en Python illustre le fonctionnement d'une \*\*attaque par force brute\*\* appliquée à un mot de passe, en testant systématiquement toutes les combinaisons possibles d'un jeu de caractères donné.
 
@@ -12,11 +12,11 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 
 
-\## 🚀 Ce que permet le projet
+## 🚀 Ce que permet le projet
 
-\- Tester un mot de passe \*\*en clair\*\* ou sous forme de \*\*hash\*\* (MD5, SHA-256)
+- Tester un mot de passe \*\*en clair\*\* ou sous forme de \*\*hash\*\* (MD5, SHA-256)
 
-\- Paramétrer le jeu de caractères utilisé pour l'attaque :
+- Paramétrer le jeu de caractères utilisé pour l'attaque :
 
 &#x20; - minuscules (`a-z`)
 
@@ -28,15 +28,15 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 &#x20; - combinaison complète
 
-\- Définir une longueur maximale à tester
+- Définir une longueur maximale à tester
 
-\- Observer en temps réel la progression de l'attaque
+- Observer en temps réel la progression de l'attaque
 
-\- Comprendre l'impact exponentiel de la complexité d'un mot de passe sur le temps de craquage
+- Comprendre l'impact exponentiel de la complexité d'un mot de passe sur le temps de craquage
 
 
 
-\## 📁 Structure du projet
+## 📁 Structure du projet
 
 ```
 
@@ -56,11 +56,11 @@ Password\_Brute\_Force\_Attack/
 
 
 
-\## ▶️ Utilisation
+## ▶️ Utilisation
 
 
 
-\### 1. Préparer la cible
+### 1. Préparer la cible
 
 
 
@@ -84,25 +84,25 @@ python -c "import hashlib; print(hashlib.sha256(b'abc').hexdigest())"
 
 
 
-\### 2. Lancer l'attaque
+### 2. Lancer l'attaque
 
 
 
 ```bash
 
-\# Mode clair
+# Mode clair
 
 python cracker.py --target targets/plain.txt --mode plaintext --charset lower --max-length 4
 
 
 
-\# Mode hash MD5
+# Mode hash MD5
 
 python cracker.py --target targets/hashed.txt --mode hash --algo md5 --charset lower --max-length 4
 
 
 
-\# Mode hash SHA-256
+# Mode hash SHA-256
 
 python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charset lower --max-length 4
 
@@ -110,7 +110,7 @@ python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charse
 
 
 
-\### 3. Options disponibles
+### 3. Options disponibles
 
 
 
@@ -128,7 +128,7 @@ python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charse
 
 
 
-\## ⚠️ Message de prévention
+## ⚠️ Message de prévention
 
 
 
