@@ -18,15 +18,15 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 - Paramétrer le jeu de caractères utilisé pour l'attaque :
 
-&#x20; - minuscules (`a-z`)
+	- minuscules (`a-z`)
 
-&#x20; - majuscules (`A-Z`)
+	- majuscules (`A-Z`)
 
-&#x20; - chiffres (`0-9`)
+	- chiffres (`0-9`)
 
-&#x20; - caractères spéciaux
+	- caractères spéciaux
 
-&#x20; - combinaison complète
+	- combinaison complète
 
 - Définir une longueur maximale à tester
 
@@ -64,7 +64,7 @@ Password\_Brute\_Force\_Attack/
 
 
 
-\*\*Mode clair\*\* — écrire directement le mot de passe dans `targets/plain.txt` :
+**Mode clair** — écrire directement le mot de passe dans `targets/plain.txt` :
 
 ```
 
@@ -74,7 +74,7 @@ abc
 
 
 
-\*\*Mode hash\*\* — générer un hash avec Python et le placer dans `targets/hashed.txt` :
+**Mode hash** — générer un hash avec Python et le placer dans `targets/hashed.txt` :
 
 ```bash
 
@@ -114,17 +114,12 @@ python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charse
 
 
 
-| Option | Valeurs possibles | Défaut |
-
-|---|---|---|
-
-| `--mode` | `plaintext`, `hash` | `plaintext` |
-
-| `--algo` | `md5`, `sha256` | `sha256` |
-
-| `--charset` | `lower`, `upper`, `digits`, `special`, `full` | `lower` |
-
-| `--max-length` | entier | `4` |
+| Option         | Valeurs possibles                                  | Défaut      |
+|----------------|----------------------------------------------------|-------------|
+| `--mode`       | `plaintext`, `hash`                                | `plaintext` |
+| `--algo`       | `md5`, `sha256`                                    | `sha256`    |
+| `--charset`    | `lower`, `upper`, `digits`, `special`, `full`      | `lower`     |
+| `--max-length` | entier                                             | `4`         |
 
 
 
@@ -132,9 +127,9 @@ python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charse
 
 
 
-Ce projet est conçu \*\*exclusivement à des fins pédagogiques\*\* afin d'illustrer le fonctionnement des attaques par force brute et l'importance du choix d'un mot de passe robuste.
+Ce projet est conçu **exclusivement à des fins pédagogiques** afin d'illustrer le fonctionnement des attaques par force brute et l'importance du choix d'un mot de passe robuste.
 
 
 
-N'utilisez jamais ce type d'outil sur des systèmes, comptes ou données ne vous appartenant pas ou sans autorisation explicite. Toute utilisation à des fins malveillantes est \*\*illégale\*\*.
+N'utilisez jamais ce type d'outil sur des systèmes, comptes ou données ne vous appartenant pas ou sans autorisation explicite. Toute utilisation à des fins malveillantes est **illégale**.
 
