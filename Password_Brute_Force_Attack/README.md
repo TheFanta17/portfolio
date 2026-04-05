@@ -4,7 +4,7 @@
 
 ## 🧩 Introduction
 
-Ce mini-lab en Python illustre le fonctionnement d'une \*\*attaque par force brute\*\* appliquée à un mot de passe, en testant systématiquement toutes les combinaisons possibles d'un jeu de caractères donné.
+Ce mini-lab en Python illustre le fonctionnement d'une **attaque par force brute** appliquée à un mot de passe, en testant systématiquement toutes les combinaisons possibles d'un jeu de caractères donné.
 
 
 
@@ -14,7 +14,7 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 ## 🚀 Ce que permet le projet
 
-- Tester un mot de passe \*\*en clair\*\* ou sous forme de \*\*hash\*\* (MD5, SHA-256)
+- Tester un mot de passe **en clair** ou sous forme de **hash** (MD5, SHA-256)
 
 - Paramétrer le jeu de caractères utilisé pour l'attaque :
 
@@ -24,7 +24,7 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 	- chiffres (`0-9`)
 
-	- caractères spéciaux
+	- caractères spéciaux (`&!?@...`)
 
 	- combinaison complète
 
@@ -40,7 +40,7 @@ Le projet explore deux scénarios : la comparaison directe en clair et la compar
 
 ```
 
-Password\_Brute\_Force\_Attack/
+Password_Brute_Force_Attack/
 
 ├── cracker.py
 
@@ -78,7 +78,7 @@ abcd
 
 ```bash
 
-python -c "import hashlib; print(hashlib.md5(b'abcd').hexdigest())"
+python3 -c "import hashlib; print(hashlib.md5(b'abcd').hexdigest())"
 
 ```
 
@@ -92,13 +92,13 @@ python -c "import hashlib; print(hashlib.md5(b'abcd').hexdigest())"
 
 # Mode clair
 
-python cracker.py --target targets/plain.txt --mode plaintext --charset lower --max-length 4
+python3 cracker.py --target targets/plain.txt --mode plaintext --charset lower --max-length 4
 
 
 
 # Mode hash MD5
 
-python cracker.py --target targets/hashed.txt --mode hash --algo md5 --charset lower --max-length 4
+python3 cracker.py --target targets/hashed.txt --mode hash --algo md5 --charset lower --max-length 4
 
 
 ```
