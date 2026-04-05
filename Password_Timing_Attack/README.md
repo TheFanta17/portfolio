@@ -31,12 +31,12 @@ t4k9m
 
 ### 2. Tester la version vulnérable
 ```bash
-python vulnerable_app.py
+python3 vulnerable_app.py
 ```
 
 ### 3. Lancer l'attaque
 ```bash
-python attacker.py --length 5
+python3 attacker.py --length 5
 ```
 L'attaquant fournit la longueur connue du token. Pour chaque position, le script teste tous les caractères du charset et retient celui qui génère le temps de réponse le plus long.
 
@@ -86,8 +86,6 @@ Ce projet est une **démonstration simplifiée** qui s'écarte de la réalité s
 - **Le délai est amplifié artificiellement** : un `time.sleep(0.0001)` par caractère correct rend le signal mesurable en local. En production, la fuite existe naturellement mais nécessite des conditions réseau contrôlées et des milliers de requêtes pour être exploitable.
 - **L'accès au code source n'est pas réaliste** : en conditions réelles, l'attaquant est en boîte noire — il ne voit que les temps de réponse, sans jamais accéder au vérificateur ni au secret.
 - **Sensibilité aux performances de la machine** : le signal repose sur des variations de l'ordre de 100µs. Sur des environnements à performances limitées ou instables — comme une VM Kali Linux — le bruit du scheduler OS peut masquer complètement le signal et rendre l'attaque inopérante. Le projet est conçu pour fonctionner sur une machine hôte avec des ressources CPU dédiées.
-
-La suite logique de ce projet serait de reproduire cette attaque sur une **API HTTP locale**, ce qui correspond au vrai contexte d'utilisation des timing attacks.
 
 ## ⚠️ Message de prévention
 
