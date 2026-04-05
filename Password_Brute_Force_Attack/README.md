@@ -68,7 +68,7 @@ Password\_Brute\_Force\_Attack/
 
 ```
 
-abc
+abcd
 
 ```
 
@@ -78,7 +78,7 @@ abc
 
 ```bash
 
-python -c "import hashlib; print(hashlib.sha256(b'abc').hexdigest())"
+python -c "import hashlib; print(hashlib.md5(b'abcd').hexdigest())"
 
 ```
 
@@ -100,11 +100,6 @@ python cracker.py --target targets/plain.txt --mode plaintext --charset lower --
 
 python cracker.py --target targets/hashed.txt --mode hash --algo md5 --charset lower --max-length 4
 
-
-
-# Mode hash SHA-256
-
-python cracker.py --target targets/hashed.txt --mode hash --algo sha256 --charset lower --max-length 4
 
 ```
 
