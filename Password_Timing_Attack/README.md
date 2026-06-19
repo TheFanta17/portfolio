@@ -1,17 +1,20 @@
 # Password Timing Attack
 
 ## 🧩 Introduction
+
 Ce mini-lab en Python illustre le fonctionnement d'une **attaque temporelle** (timing attack) appliquée à la vérification d'un token d'authentification.
 
 L'objectif est de montrer comment une implémentation naïve de comparaison de chaînes peut laisser fuir des informations sur le secret à travers le **temps de réponse**, et comment s'en protéger avec une comparaison en temps constant.
 
 ## 🚀 Ce que permet le projet
+
 - Simuler une application vulnérable dont la vérification de token fuit des informations temporelles
 - Reconstruire un token caractère par caractère en exploitant ces variations de temps
 - Comparer concrètement le comportement d'une comparaison naïve vs `hmac.compare_digest()`
 - Comprendre pourquoi `==` ne suffit pas pour comparer des secrets en sécurité
 
 ## 📁 Structure du projet
+
 ```
 Password_Timing_Attack/
 ├── vulnerable_app.py   # Vérification naïve — fuite temporelle
@@ -21,26 +24,45 @@ Password_Timing_Attack/
 └── README.md
 ```
 
-## ▶️ Utilisation
+## ▶️ Utilisation (Linux)
 
-### 1. Définir le token cible
+Toutes les étapes ci-dessous se réalisent dans un terminal Linux.
+
+### 1. Récupérer le projet
+
+Cloner le dépôt :
+
+```bash
+git clone https://github.com/TheFanta17/portfolio portfolio
+cd portfolio/Password_Timing_Attack
+```
+
+### 2. Définir le token cible
+
 Écrire le token à deviner dans `secret.txt` :
-```
-t4k9m
+
+```bash
+echo -n "t4k9m" > secret.txt
 ```
 
-### 2. Tester la version vulnérable
+> `echo -n` évite le saut de ligne final qui fausserait la comparaison.
+
+### 3. Tester la version vulnérable
+
 ```bash
 python3 vulnerable_app.py
 ```
 
-### 3. Lancer l'attaque
+### 4. Lancer l'attaque
+
 ```bash
 python3 attacker.py --length 5
 ```
+
 L'attaquant fournit la longueur connue du token. Pour chaque position, le script teste tous les caractères du charset et retient celui qui génère le temps de réponse le plus long.
 
 Exemple de sortie :
+
 ```
 [*] Timing Attack démarrée
     Longueur connue : 5
@@ -57,7 +79,7 @@ Exemple de sortie :
     Correct : True
 ```
 
-### 4. Options disponibles
+### 5. Options disponibles
 
 | Option | Défaut | Description |
 |---|---|---|
@@ -67,6 +89,7 @@ Exemple de sortie :
 ## ⚙️ Fonctionnement technique
 
 ### Pourquoi le temps varie-t-il ?
+
 La fonction vulnérable compare les caractères un par un et sort **immédiatement** dès le premier caractère incorrect. Plus le candidat a de caractères corrects en préfixe, plus la comparaison dure longtemps avant d'échouer.
 
 ```
@@ -77,6 +100,7 @@ test    = "t4????" → échoue position 3 → temps T + 2Δ
 ```
 
 ### Pourquoi `hmac.compare_digest()` résout le problème ?
+
 `hmac.compare_digest()` compare **toujours tous les caractères**, quelle que soit la position du premier caractère incorrect. Le temps de réponse est constant → aucune information ne fuite.
 
 ## ⚠️ Limites pédagogiques
@@ -85,7 +109,7 @@ Ce projet est une **démonstration simplifiée** qui s'écarte de la réalité s
 
 - **Le délai est amplifié artificiellement** : un `time.sleep(0.0001)` par caractère correct rend le signal mesurable en local. En production, la fuite existe naturellement mais nécessite des conditions réseau contrôlées et des milliers de requêtes pour être exploitable.
 - **L'accès au code source n'est pas réaliste** : en conditions réelles, l'attaquant est en boîte noire — il ne voit que les temps de réponse, sans jamais accéder au vérificateur ni au secret.
-- **Sensibilité aux performances de la machine** : le signal repose sur des variations de l'ordre de 100µs. Sur des environnements à performances limitées ou instables — comme une VM Kali Linux — le bruit du scheduler OS peut masquer complètement le signal et rendre l'attaque inopérante. Le projet est conçu pour fonctionner sur une machine hôte avec des ressources CPU dédiées.
+- **Sensibilité aux performances de la machine** : le signal repose sur des variations de l'ordre de 100 µs. Sur des environnements à performances limitées ou instables — comme une VM Kali Linux — le bruit du scheduler OS peut masquer complètement le signal et rendre l'attaque inopérante. Le projet est conçu pour fonctionner sur une machine hôte avec des ressources CPU dédiées.
 
 ## ⚠️ Message de prévention
 
