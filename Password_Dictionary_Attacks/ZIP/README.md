@@ -43,7 +43,7 @@ Créer un fichier de test, puis le compresser dans une archive protégée par mo
 
 ```bash
 echo "Fichier de test" > dummy.txt
-zip --password 123456 test.zip dummy.txt
+zip --password password123 test.zip dummy.txt
 ```
 
 > L'outil `zip` se trouve dans le paquet `zip` (`sudo apt install zip` si besoin).
