@@ -30,7 +30,7 @@ Password_Analyst/
 └── README.md
 ```
 
-## ▶️ Utilisation (ligne de commande Linux)
+## ▶️ Utilisation (Linux)
 
 Toutes les étapes ci-dessous se réalisent dans un terminal Linux.
 
