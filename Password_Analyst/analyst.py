@@ -164,7 +164,7 @@ class App:
         ttk.Label(main, text="Entrez un mot de passe :").pack(anchor="w")
 
         self.var = tk.StringVar()
-        ttk.Entry(main, textvariable=self.var, show="•", font=("Segoe UI", 14)).pack(fill="x", pady=(6, 10))
+        ttk.Entry(main, textvariable=self.var, font=("Segoe UI", 14)).pack(fill="x", pady=(6, 10))
 
         self.state_label = ttk.Label(main, text="—", font=("Segoe UI", 14, "bold"))
         self.state_label.pack(anchor="w", pady=(4, 4))
