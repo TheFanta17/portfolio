@@ -1,62 +1,95 @@
 # Password Hash Dictionary Attack (SHA-512)
 
 ## 🧩 Introduction
+
 Ce mini-lab en Python démontre comment un mot de passe hashé peut être compromis par une **attaque par dictionnaire**, même lorsque celui-ci est protégé par un algorithme robuste comme **SHA-512 crypt**.
 
 Le projet simule un scénario réaliste proche du fonctionnement de `/etc/shadow`, dans un objectif strictement pédagogique.
 
 ## 🚀 Ce que permet le projet
+
 - Générer un hash de mot de passe au format **SHA-512 crypt**
 - Utiliser un sel et des paramètres réalistes (rounds)
-- Stocker un hash dans un fichier simulant une base d’authentification
-- Lancer une attaque par dictionnaire à partir d’une wordlist
+- Stocker un hash dans un fichier simulant une base d'authentification
+- Lancer une attaque par dictionnaire à partir d'une wordlist
 - Comprendre le rôle du sel et des paramètres de hashing
 - Observer les limites des mots de passe faibles, même avec un bon algorithme
 
 ## 📁 Structure du projet
-```
 
+```
 HASH/
 ├── hashing.py           # Génération du hash SHA-512 crypt
 ├── shadow_cracker.py    # Attaque par dictionnaire
 ├── shadow.txt           # Hash cible (format crypt)
 ├── rockyou.txt          # Wordlist (non incluse)
 └── README.md
+```
 
-````
+## ▶️ Utilisation (Linux)
 
-## ▶️ Utilisation
+Toutes les étapes ci-dessous se réalisent dans un terminal Linux.
 
-### 1. Préparer l’environnement
-Installer la dépendance nécessaire :
+### 1. Récupérer le projet
+
+Cloner le dépôt :
+
 ```bash
-pip install passlib
-````
+git clone https://github.com/TheFanta17/portfolio portfolio
+cd portfolio/Password_Dictionary_Attacks/HASH
+```
 
-Placer une wordlist (ex : `rockyou.txt`) dans le dossier du projet.
+### 2. Préparer l'environnement
+
+Installer la dépendance nécessaire :
+
+```bash
+sudo apt install python3-passlib
+```
+
+### 3. Télécharger la wordlist `rockyou.txt`
+
+Avec `wget` :
+
+```bash
+wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+```
+
+Ou avec `curl` :
+
+```bash
+curl -L -O https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+```
+
+Sur Kali Linux, `rockyou.txt` est souvent déjà fournie (compressée) :
+
+```bash
+sudo gunzip -k /usr/share/wordlists/rockyou.txt.gz
+cp /usr/share/wordlists/rockyou.txt .
+```
 
 > Le fichier `rockyou.txt` est volontairement exclu du dépôt Git via le `.gitignore`.
 
-### 2. Générer un hash
+### 4. Générer un hash
 
 ```bash
-python hashing.py
+python3 hashing.py
 ```
 
-* Le mot de passe est saisi sans affichage
-* Le hash est enregistré dans le fichier `shadow.txt`
+- Le mot de passe est saisi sans affichage
+- Le hash est enregistré dans le fichier `shadow.txt`
 
-### 3. Lancer l’attaque par dictionnaire
+### 5. Lancer l'attaque par dictionnaire
 
 ```bash
-python shadow_cracker.py
+python3 shadow_cracker.py
 ```
 
-* Chaque mot de la wordlist est testé séquentiellement
-* Le mot de passe est affiché immédiatement s’il est trouvé
+- Chaque mot de la wordlist est testé séquentiellement
+- Le mot de passe est affiché immédiatement s'il est trouvé
 
 ## ⚠️ Message de prévention
 
 Ce projet est conçu **uniquement à des fins éducatives** afin de comprendre le fonctionnement du stockage des mots de passe et des attaques hors-ligne.
 
-Toute utilisation de ces techniques sur des systèmes ou données sans autorisation est **illégale** et contraire à l’éthique.
+Toute utilisation de ces techniques sur des systèmes ou données sans autorisation est **illégale** et contraire à l'éthique.
